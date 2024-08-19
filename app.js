@@ -1,18 +1,19 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-require('dotenv').config();
-
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = 3000;
 
-app.use(cors());
-app.use(bodyParser.json());
+// 예약 라우트 파일 가져오기
+const reservationRoutes = require('./routes/reservationRoutes');
 
-// Routes 설정
-const reservationRoutes = require('./routes/reservations');
-app.use('/api/reservations', reservationRoutes);
+// 기본 경로에 대한 응답
+app.get('/', (req, res) => {
+    res.send('Welcome to the Reservation API!');
+});
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+// 예약 관련 라우트를 사용
+app.use('/reservations', reservationRoutes);
+
+// 서버 실행
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
 });
