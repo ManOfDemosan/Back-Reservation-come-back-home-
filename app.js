@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 
 // 예약 라우트 파일 가져오기
-const reservationRoutes = require('./routes/reservationRoutes');
+const reservationRoutes = require('./routes/reservations');
 
 // 기본 경로에 대한 응답
 app.get('/', (req, res) => {
