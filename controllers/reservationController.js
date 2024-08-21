@@ -14,12 +14,14 @@ exports.getReservations = async (req, res) => {
 exports.createReservation = async (req, res) => {
     try {
         const { name, date } = req.body;
+        console.log('Received data:', req.body); // 요청 데이터 로그
         const newReservation = await Reservation.create({
             name,
             date,
             status: 'Pending',
         });
         res.status(201).json(newReservation);
+        console.log('Created Reservation:', newReservation); // 생성된 예약 로그
     } catch (error) {
         console.error('Failed to create reservation:', error);
         res.status(500).json({ error: 'Failed to create reservation' });
